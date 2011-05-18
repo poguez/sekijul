@@ -28,36 +28,32 @@ def detail(request, event_id):
 #  c.update(csrf(request))  
   return render_to_response('events/detail.html',{'event':e}, context_instance=RequestContext(request))
 
-#def newPost(request):
-  #We create a default event
-#  e =  Event(name = "default",date = datetime.datetime.now(),place = "none", category = "none", rating =0, pub_date = datetime.datetime.now(), image ="" )
-#  e.save()
+"""
+###########################
+#For Registering the Event#
+###########################
 
-#First we create a form instance from the last event created
-#  e = Event.objects.get(pk=len(Event.objects.all()))
-#  f = EventForm(request.POST, instance = e )
-#  f.save()  
-#  return HttpResponse(formset)
+def register_page(request):
+  if request.method == 'POST':
+    form = RegistrationForm(request.POST)
+    if form.is_valid():
+      event = Event(
+        name = form.cleaned_data['name'],
+        date = form.cleaned_data['date'],
+        place = form.cleaned_data['place'],
+        source = form.cleaned_data['source'],
+        content = form.cleaned_data['content'],
+        rating = Decimal(0),
+        pub_date = datetime.datetime.now(),
+        Image = form.cleaned_data['image']
+      )
+    return HttpResponseRedirect('/register/success')
+  else:
+    form = RegistrationForm()
+    variables = RequestContext(request, {'form': form})
+  return render_to_response(
+    'registration/register.html',
+    variables
+  )
 
-def newPost(request):
-  #We create a default event
-  e =  Event(name = "default",date = datetime.datetime.now(),place = "",  rating =0, pub_date = datetime.datetime.now(), image ="" )
-  e.save()
-  
-  EventFormSet = modelformset_factory(Event, exclude=('pub_date','rating'),max_num=1)
-  formset = EventFormSet(queryset=Event.objects.order_by('-date'))[:1]
-  #formset = EventFormSet(request.POST)
-
-  return HttpResponse(formset)
-
-
-#def modPost(request):
-#  e.name=
-#  e.date=
-#  e.place=
-#  e.category=
-#  e.rating=
-#  e.pub_date=
-#  e.image=
-
-#  e.save()
+"""

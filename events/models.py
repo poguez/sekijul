@@ -31,20 +31,3 @@ class Event(models.Model):
     return "/events/%i/" % self.id
 
 
-#Here we begin the forms classes
-
-class EventForm(ModelForm):
-  class Meta:
-     model = Event
-
-class EventCreatorForm(forms.Form):
-  name = forms.CharField()
-  date =  forms.DateField(widget = SelectDateWidget())
-  place = forms.CharField()
-  source = forms.URLField()
-  content = forms.CharField(widget=forms.TextInput(attrs={'size':'40'}))
-  image =  forms.FileField()
-  #pub_date = datetime.datetime.now()
-  #rating = Decimal(0)
-
-
