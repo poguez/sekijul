@@ -1,0 +1,13 @@
+*~
+*.pyc
+*.rej
+noe
+__minitage__*
+bin/*
+develop-eggs
+downloads
+eggs
+log
+parts
+project/media/uploads
+tmp

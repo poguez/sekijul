@@ -1,0 +1,61 @@
+<html>
+<head>
+  <title>Event: {{event.name}}</title>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+
+<body>
+<h1>{{event.name }}</h1>
+<ul>
+    <li>Date: {{ event.date }}</li>
+    <li>Place: {{ event.place }}</li>
+    <li>Category: {{ event.category }}</li>
+    <li>Rating: {{ event.raiting }}</li>
+    <li>It was published on: {{ event.date }}</li>
+    <li>Retreived from: {{ event.source }}</li>
+    <li>Publication date: {{ event.date }}</li>
+    {%if event.image != '' %}
+      <img src="http://localhost/media/{{event.image}}"/>
+    {%endif%}
+</ul>
+
+    {%if event.content != '' %}
+      {{event.content}}
+    {%endif%}
+
+
+
+{% load comments %}
+<h2>Comments:</h2>
+{% get_comment_count for event as comment_count %}
+<p>{{ comment_count }} comments have been posted.</p>
+
+{% render_comment_list for event %}
+ 
+{% get_comment_list for event as comment_list %}
+
+{% for comment in comment_list %}
+
+<a name="c{{ comment.id }}"></a>
+    <a href="{% get_comment_permalink comment %}">
+	 permalink for comment #{{ forloop.counter }}
+    </a>
+ Comment by: {{comment.user}}
+{{comment.comment}}
+{% endfor %}
+
+<h3>Make a Comment</h3>
+
+{% get_comment_form for event as form %}
+<form action="{% comment_form_target %}" method="post">
+  {% csrf_token %}
+  {{ form }}
+  <tr>
+    <td></td>
+    <td><input type="submit" name="preview" class="submit-post" value="Preview"></td>
+  </tr>
+</form>
+
+
+</body>
+</html>

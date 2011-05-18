@@ -1,0 +1,11 @@
+{% load comments %}
+
+{% if latest_event_list %}
+    <ul>
+    {% for event in latest_event_list %}
+        <li><a href="/events/{{ event.id }}/">{{ event.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No events are available.</p>
+{% endif %}

@@ -1,0 +1,20 @@
+ {% extends "base.html" %}
+ {% block title %} Main {% endblock %}
+ {% block head %} Sekijul! {% endblock %}
+    
+  {% block content %}
+
+    {% if user.username %}
+
+      <p>Welcome {{ user.username }} to Sekijul!!!</p>
+
+    {% else %}
+
+      <p>Welcome anonymous user!
+
+      You need to <a href="/login/">login</a>
+
+      before commenting and rating our events.</p>
+
+    {% endif %}
+  {% endblock %}
