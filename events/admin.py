@@ -7,7 +7,7 @@ class EventAdmin(admin.ModelAdmin,):
   fieldsets = [
     (None,			{'fields':['name']}),
     ('Date information',	{'fields':['date']}),
-    ('General information',	{'fields':['place','rating','image','source','content']}),
+    ('General information',	{'fields':['place','rating','image','source','content','pub_date']}),
 ]
 # invalid line  widgets= {'content': Textarea(attrs={'cols': 80, 'rows': 20})}
 

@@ -1,7 +1,18 @@
 # Django settings for mysite project.
+#DIR_PREFIX is the path to the project folder
+#FOLDER_NAME is the name of the folder which contains the project
+#
+
+DIR_PREFIX = '/home/nou/django-base/project/mysite'
+FOLDER_NAME = 'mysite'
+
+project_folder = FOLDER_NAME + '.urls'
+template_dir = DIR_PREFIX + '/templates/'
+media_dir = DIR_PREFIX + '/media/'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -45,7 +56,8 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/home/nou/django-base/tutorial/sekijul/media'
+
+MEDIA_ROOT = media_dir 
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -99,13 +111,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = project_folder
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-	"/home/nou/django-base/project/mysite/templates/",
+    # Don't forget to use absolute paths, not relative paths
+    template_dir,
 )
 
 INSTALLED_APPS = (

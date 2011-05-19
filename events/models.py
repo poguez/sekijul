@@ -22,7 +22,7 @@ class Event(models.Model):
   content = models.CharField(max_length=3000)
   rating = models.DecimalField(max_digits=6, decimal_places=5)
   pub_date = models.DateTimeField('date published')
-  image = models.ImageField(upload_to='event_img')
+  image = models.ImageField(upload_to='event_img', blank=True)
 
   def __unicode__(self):
 #    return self.name
