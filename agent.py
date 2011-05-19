@@ -1,3 +1,4 @@
+# -*-coding: utf-8 -*-
 import urllib
 import urllib2
 import sys
@@ -8,7 +9,7 @@ from BeautifulSoup import BeautifulSoup
 from events.models import Event
 
 def addNewEvent( date ):
-    url = 'http://192.249.26.191:8080/events'
+    url = 'http://localhost:8080/events'
     postValue = {'pubdate_since':date}
     print 'Querying ', url, 'with', postValue
 
@@ -83,4 +84,4 @@ def addNewEvent( date ):
         i = i + 1
 
     print
-    print i, 'events added. Danke sch?n'
+    print i, 'events added. Danke schön'

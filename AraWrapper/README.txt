@@ -42,4 +42,10 @@ Don't include any blank lines prior to username.
 6. Run 'jetty-run'.
 7. Make sure agent.py points to the correct IP/port.
 8. Run agent.py
-9. Eat nachos.
+
+$ PYTHONPATH=BeautifulSoup-3.2.0 python2 manage.py shell
+
+>>> import agent
+>>> agent.addNewEvent("2011/5/17") # Lower bound of the published dates of events to be retrieved
+
+9. Eat nachos (optional)
