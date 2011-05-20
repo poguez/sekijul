@@ -4,11 +4,11 @@ import sys
 import re
 import datetime
 from BeautifulSoup import BeautifulSoup
-
+from django.contrib.auth.models import User
 from events.models import Event
 
 def addNewEvent( date ):
-    url = 'http://192.249.26.191:8080/events'
+    url = 'http://localhost:8080/events'
     postValue = {'pubdate_since':date}
     print 'Querying ', url, 'with', postValue
 
@@ -76,7 +76,8 @@ def addNewEvent( date ):
                   image= u'',
                   pub_date = pubDate,
                   rating=0,
-              source = elem.source.string)
+              source = elem.source.string,
+              user=User.objects.get(username__exact='agent') )
         e.save()
 
         print 'Added to the Event table:', e
