@@ -17,4 +17,17 @@
       before commenting and rating our events.</p>
 
     {% endif %}
+    <h2> This is the list of the Up-coming events:</h2>
+    {% if latest_event_list %}
+      <ul>
+    {% for event in latest_event_list %}
+        <li><a href="/events/{{ event.id }}/">{{ event.name }}</a></li>
+    {% endfor %}
+      </ul>
+    {% else %}
+      <p>No events are available.</p>
+    {% endif %}
+
+
   {% endblock %}
+
