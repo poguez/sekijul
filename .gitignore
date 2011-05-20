@@ -4,6 +4,8 @@
 *.swn
 *.pyc
 *.rej
+*.jpg
+*.JPG
 noe
 __minitage__*
 bin/*
