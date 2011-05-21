@@ -40,7 +40,6 @@ def register_page(request):
     if form.is_valid():
       handle_uploaded_file(request.FILES['image'])  
       
-      
       event = Event(
         name = form.cleaned_data['name'],
         date = form.cleaned_data['date'],
