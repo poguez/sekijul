@@ -11,9 +11,13 @@ class EventAdmin(admin.ModelAdmin,):
   fieldsets = [
     (None,			{'fields':['name']}),
     ('Date information',	{'fields':['date']}),
-    ('General information',	{'fields':['place','rating','source','content','pub_date','user']}),
+    ('General information',	{'fields':['place','source','content','user']}),
   ]
   inlines = [ImageInline]
+  list_display = ('name','date','place','user','pub_date')
+  list_filter = ['user','pub_date']
+  search_fields = ['name','date','place','source','content']
+  date_hierarchy = 'pub_date'
 
 
 # invalid line  widgets= {'content': Textarea(attrs={'cols': 80, 'rows': 20})}

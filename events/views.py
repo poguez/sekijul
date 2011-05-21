@@ -5,7 +5,7 @@
 ####################
 from django.template import Context, loader, RequestContext
 from django.http import HttpResponse
-from events.models import Event
+from events.models import Event,EventImage
 from django.shortcuts import render_to_response, get_object_or_404
 import datetime
 from django.forms.models import modelformset_factory
@@ -22,9 +22,14 @@ def detail(request, event_id):
   if(e):
     date = e.date.date()
     time = e.date.time()
-  return render_to_response('events/detail.html',{'event':e, 'date':date, 'time':time}, context_instance=RequestContext(request))
-
-
+    images = e.eventimage_set.all()
+    print images
+  return render_to_response('events/detail.html',{'event':e, 'date':date, 'time':time, 'images':images}, context_instance=RequestContext(request))
+  
+def vote(request, event_id):
+  return HttpResponse("Thanks for your vote")
+  
+    
 ############################
 #For Registering the Event #
 ############################

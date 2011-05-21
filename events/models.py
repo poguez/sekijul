@@ -22,8 +22,8 @@ class Event(models.Model):
   place = models.CharField(max_length=200,blank=True)
   source = models.CharField(max_length=200,blank=True)
   content = models.CharField(max_length=3000, blank=True)
-  rating = models.DecimalField(max_digits=6, decimal_places=5)
-  pub_date = models.DateTimeField('date published')
+  rating = models.DecimalField(max_digits=6, decimal_places=5,editable=False, default=Decimal(0))
+  pub_date = models.DateTimeField('date published', editable=False, default=datetime.datetime.now())
   user = models.ForeignKey(User)  
 
 
@@ -42,7 +42,3 @@ class EventImage(models.Model):
 
   def __unicode__(self):
     return u"%s"  %  (self.image)
-"""
-class Rating(models.Model):
-  event =  models.ForeignKey(Event)
-"""
