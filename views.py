@@ -8,12 +8,17 @@ from django.template import Context, loader, RequestContext
 from django.http import HttpResponseRedirect
 from django.contrib.auth import logout
 from forms import * 
+from events.models import Event
 
 def main(request):
-  return render_to_response(
-    'main_page.html',
-    {'user':request.user}
-  )
+  latest_event_list = Event.objects.all().order_by('-pub_date')[:20]
+  print latest_event_list
+  variables = RequestContext(request,{
+    'user':request.user,
+    'latest_event_list':latest_event_list
+  })
+  
+  return render_to_response('main_page.html',variables)
 
 def logout_view(request):
   logout(request)
