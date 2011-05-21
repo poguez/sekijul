@@ -1,11 +1,13 @@
+
  {% extends "base.html" %}
  {% block title %} Main {% endblock %}
- {% block head %} Sekijul! {% endblock %}
+ {% block head %} sekijul {% endblock %}
     
-  {% block content %}
-
+  
+    {% block content %}
+  <div id="main">
+    
     {% if user.username %}
-
       <p>Welcome {{ user.username }} to Sekijul!!!</p>
 
     {% else %}
@@ -15,6 +17,14 @@
       You need to <a href="/login/">login</a>
 
       before commenting and rating our events.</p>
+      
+      <div class="main-content">
+      </div>
+      <div class="sub-content">
+      </div>
+      
+  </div>
+
 
     {% endif %}
   {% endblock %}

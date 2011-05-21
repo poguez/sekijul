@@ -6,6 +6,7 @@
 <html>
 
 <head>
+<link rel="stylesheet" href="/media/sekijul.css" type="text/css" />
 
   <title>Sekijul! | {% block title %}{% endblock %}</title>
 
@@ -13,18 +14,28 @@
 
 <body>
 
-  <h1>{% block head %}{% endblock %}</h1>
-  
-
-  <div id="nav">
-  <a href="/">home</a> |
-  {% if user.is_authenticated %}
-    welcome {{ user.username }}
-    (<a href="/logout">logout</a>)
-  {% else %}
-    <a href="/login/">login</a> |
-    <a href="/register/">register</a>
-  {% endif %}
+  <div id="nav-bg">
+    <div id="nav-bar"><div id="nav-bar-inside">
+      <div id="nav-bar-inside-left">
+        <div id="sekijul"><h2>{% block head %}{% endblock %}</h2></div>
+        <form id="search-form">
+          <span class="pointer-cube"><i></i></span>
+          <input value placeholder="Search events by name, place, time, or anything!" name="q" id="search-query" type="text">
+        </form>
+      </div>
+      <div id="nav-bar-inside-right">
+        <div id="nav-option">
+          <a href="/">home</a> |
+	      {% if user.is_authenticated %}
+		  welcome {{ user.username }}
+		  (<a href="/logout">logout</a>)
+	      {% else %}
+		  <a href="/login/">login</a> |
+		  <a href="/register/">register</a>
+	      {% endif %}
+	</div>
+      </div>
+    </div></div>
   </div>
 
   {% block content %}{% endblock %}

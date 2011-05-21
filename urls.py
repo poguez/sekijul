@@ -5,10 +5,16 @@ from django.contrib.comments.feeds import LatestCommentFeed
 admin.autodiscover()
 from django.views.generic.simple import direct_to_template
 
+import os.path
+from django.conf.urls.defaults import *
+
+import settings
+
 feeds = {
 	'latest': LatestCommentFeed,
 }
 
+media = os.path.join(os.path.dirname(__file__), 'media')
 
 urlpatterns = patterns('',
     # Examples:
@@ -30,4 +36,8 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'views.logout_view'),
     url(r'^register/$', 'views.register_page'),
     url(r'^register/success/$', direct_to_template,{ 'template': 'registration/registration_success.html' }),
+
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
+        { 'document_root': media }),
 )
+
