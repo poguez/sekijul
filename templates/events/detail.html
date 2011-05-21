@@ -75,10 +75,19 @@
     <table>
     <form action="{% comment_form_target %}" method="post">
     {% csrf_token %}
+    {{ form.object_pk}}
+    {{ form.content_type}}
+    {{ form.timestamp}}
+    {{ form.security_hash}}
     {{ form.comment}}
+    {{event.id}}
+    {% comment_form_target %}
     <tr>
       <td></td>
-      <td><input type="submit" name="preview" class="submit-post" value="Preview"></td>
+      <td>
+        <input type="submit" name="submit" class="submit-post" value="Post">
+        <input type="hidden" name="next" class="http://localhost:8080/events/{{event.id}}">
+     </td>
     </tr>
     </form>
     </table>
