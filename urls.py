@@ -25,7 +25,7 @@ urlpatterns = patterns('',
     
     #The main
     url(r'^$', 'views.main'),
-    url(r'^events/', include('events.urls')),
+    url(r'^events/', include('events.urls', namespace='events')),
     url(r'^comments/', include ('django.contrib.comments.urls')),
     
     # Comments feeds
