@@ -3,12 +3,22 @@
 #FOLDER_NAME is the name of the folder which contains the project
 #
 
-DIR_PREFIX = '/home/nou/django-base/project/mysite'
-FOLDER_NAME = 'mysite'
+DIR_PREFIX = '/home/elev/scraps/sekijul_stuff/sekijul'
+FOLDER_NAME = 'sekijul'
 
 project_folder = FOLDER_NAME + '.urls'
 template_dir = DIR_PREFIX + '/templates/'
 media_dir = DIR_PREFIX + '/media/'
+
+#HAYSTACK_SITECONF = FOLDER_NAME + '.search_sites'
+#HAYSTACK_SEARCH_ENGINE = 'whoosh'
+#HAYSTACK_WHOOSH_PATH = DIR_PREFIX + 'whoosh_index'
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': DIR_PREFIX + 'whoosh_index',
+        }
+}
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -129,6 +139,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'events',
     'django.contrib.comments',
+    'haystack',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
