@@ -1,3 +1,4 @@
+# -*-coding: utf-8 -*-
 import urllib
 import urllib2
 import sys
@@ -84,4 +85,4 @@ def addNewEvent( date ):
         i = i + 1
 
     print
-    print i, 'events added. Danke sch?n'
+    print i, 'events added. Danke schön'

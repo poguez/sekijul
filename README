@@ -2,3 +2,24 @@ Hi this is the first file of our repository, add here all the information, regar
 
 Noe
 
+
+Wrappers and Agent Description
+=================
+
+sekijul currently has three packages for wrapping web services and providing answers to common questions regarding events information around the campus, such as date, time, place details.
+
+newspr_wrapper.py wraps newspr.kaist.ac.kr and extracts scheduling information on upcoming cultural performances in campus(문화행사).
+djacwrapper.py wraps djacwrapper.or.kr and provides scheduling information of performances from the Daejeon Culture & Arts Center(대전문화예술의전당).
+The AraWrapper project wraps ara.kaist.ac.kr, an in-campus community board. It scans through articles from the campus announcement board and extracts event details.
+
+How to use newspr_wrapper.py and djacwrapper.py:
+
+$ PYTHONPATH=BeautifulSoup-3.2.0/ python2 manage.py shell
+
+>>> import newspr_wrapper
+>>> newspr_wrapper.saveNewsprEvents()
+
+>>> import djacwrapper
+>>> djacwrapper.saveDjacEvents()
+
+See AraWrapper/README.txt for information on using AraWrapper. 
