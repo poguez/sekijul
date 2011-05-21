@@ -40,8 +40,7 @@ def comments(request, event_id):
   if(e):
     site = Site.objects.get(name="sekijul")
   return render_to_response('events/comments.html',{'event':e,'site':site}, context_instance=RequestContext(request))
-  
->>>>>>> upstream/master
+
 def vote(request, event_id):
   return HttpResponse("Thanks for your vote")
   
