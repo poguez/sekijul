@@ -1,0 +1,24 @@
+
+  {% load comments %}
+
+  <h2>Comments:</h2>
+  {% get_comment_count for event as comment_count %}
+    {% if comment_count > 0  %}
+      <h3>{{ comment_count }} comments have been posted.</h3>
+    {% else %}
+      <h3> Come on' make be the first to comment in this event. </h3>
+    {% endif %}
+    <br>
+ 
+    {% get_comment_list for event as comment_list %}
+    
+    {% for comment in comment_list %}
+      <p>Posted by: {{ comment.user_name }} on {{ comment.submit_date }}<br />
+      {{ comment.comment }}</p>
+    {% endfor %}
+     
+    
+
+
+
+
