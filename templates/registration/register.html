@@ -1,12 +1,6 @@
-{% extends "base.html" %}
+<h2>Registration</h2>
 
-{% block title %}Sekijul! | User Registration{% endblock %}
-
-{% block head %}User Registration{% endblock %}
-
-{% block content %}
-
-<form method="post" action=".">
+<form method="post" action="register/">
 
   {% csrf_token %} 
   {{ form.as_p }}
@@ -15,4 +9,3 @@
 
 </form>
 
-{% endblock %}

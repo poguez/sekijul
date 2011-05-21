@@ -35,7 +35,7 @@ urlpatterns = patterns('',
     url(r'^login/$', 'django.contrib.auth.views.login'),
     url(r'^logout/$', 'views.logout_view'),
     url(r'^register/$', 'views.register_page'),
-    url(r'^register/success/$', direct_to_template,{ 'template': 'registration/registration_success.html' }),
+    url(r'^register/success/$', direct_to_template,{ 'template': 'events/registration_success.html' }),
 
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
         { 'document_root': media }),

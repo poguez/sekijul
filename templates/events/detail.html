@@ -1,10 +1,6 @@
- {% extends "base.html" %}
  {% block title %} Event: {{event.name}} {% endblock %}
 
- {% block headers %}  <meta http-equiv="content-type" content="text/html;charset=utf-8" />{% endblock %}
- {% block head %} Sekijul! {% endblock %}
-
-  {% block content %}
+  {% block subcontent %}
 
     {% if user.username %}
 
