@@ -74,7 +74,7 @@ def addNewEvent( date ):
                   date = dateAndTime,
                   content = contentString , #unicode(elem.content.renderContents()),
                   place = place, 
-                  image= u'',
+#                  image= u'',
                   pub_date = pubDate,
                   rating=0,
               source = elem.source.string,
