@@ -17,7 +17,6 @@ def index(request):
   latest_event_list = Event.objects.all().order_by('-pub_date')[:20]
   return render_to_response('events/index.html', {"latest_event_list":latest_event_list}, context_instance=RequestContext(request))
 
-@csrf_protect
 def detail(request, event_id):
   e = get_object_or_404(Event, pk=event_id)
   if(e):
@@ -27,12 +26,22 @@ def detail(request, event_id):
     site = Site.objects.get(name="sekijul")
   return render_to_response('events/detail.html',{'event':e, 'date':date, 'time':time, 'images':images, 'site':site}, context_instance=RequestContext(request))
   
+def dynamic_detail(request, event_id):
+  e = get_object_or_404(Event, pk=event_id)
+  if(e):
+    date = e.date.date()
+    time = e.date.time()
+    images = e.eventimage_set.all() 
+    print images
+  return render_to_response('events/dynamic_detail.html',{'event':e, 'date':date, 'time':time, 'images':images}, context_instance=RequestContext(request))
+ 
 def comments(request, event_id):
   e = get_object_or_404(Event, pk=event_id)
   if(e):
     site = Site.objects.get(name="sekijul")
   return render_to_response('events/comments.html',{'event':e,'site':site}, context_instance=RequestContext(request))
   
+>>>>>>> upstream/master
 def vote(request, event_id):
   return HttpResponse("Thanks for your vote")
   

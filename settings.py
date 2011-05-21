@@ -10,9 +10,6 @@ project_folder = FOLDER_NAME + '.urls'
 template_dir = DIR_PREFIX + '/templates/'
 media_dir = DIR_PREFIX + '/media/'
 
-#HAYSTACK_SITECONF = FOLDER_NAME + '.search_sites'
-#HAYSTACK_SEARCH_ENGINE = 'whoosh'
-#HAYSTACK_WHOOSH_PATH = DIR_PREFIX + 'whoosh_index'
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
