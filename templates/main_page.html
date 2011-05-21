@@ -6,7 +6,8 @@
   
     {% block content %}
   <div id="main">
-    
+
+  <!--
     {% if user.username %}
       <p>Welcome {{ user.username }} to Sekijul!!!</p>
 
@@ -18,26 +19,22 @@
 
       before commenting and rating our events.</p>
       
-      <div class="main-content">
+   {% endif %}
+  -->
+      <div class="main-content">    
+	<h2> This is the list of the Up-coming events:</h2>
+	    {% if latest_event_list %}
+	      <ul>
+	    {% for event in latest_event_list %}
+		<li><span onclick="javascript:show_event({{ event.id }})">{{ event.name }}</span></li>
+	    {% endfor %}
+	      </ul>
+	    {% else %}
+	      <p>No events are available.</p>
+	    {% endif %}    
       </div>
-      <div class="sub-content">
-      </div>
+      <div class="sub-content" id="event_detail" style="visibility:hidden"></div>
       
   </div>
-
-
-    {% endif %}
-    <h2> This is the list of the Up-coming events:</h2>
-    {% if latest_event_list %}
-      <ul>
-    {% for event in latest_event_list %}
-        <li><a href="/events/{{ event.id }}/">{{ event.name }}</a></li>
-    {% endfor %}
-      </ul>
-    {% else %}
-      <p>No events are available.</p>
-    {% endif %}
-
-
   {% endblock %}
 

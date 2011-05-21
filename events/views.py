@@ -25,7 +25,16 @@ def detail(request, event_id):
     images = e.eventimage_set.all()
     print images
   return render_to_response('events/detail.html',{'event':e, 'date':date, 'time':time, 'images':images}, context_instance=RequestContext(request))
-  
+
+def dynamic_detail(request, event_id):
+  e = get_object_or_404(Event, pk=event_id)
+  if(e):
+    date = e.date.date()
+    time = e.date.time()
+    images = e.eventimage_set.all() 
+    print images
+  return render_to_response('events/dynamic_detail.html',{'event':e, 'date':date, 'time':time, 'images':images}, context_instance=RequestContext(request))
+ 
 def vote(request, event_id):
   return HttpResponse("Thanks for your vote")
   

@@ -7,6 +7,8 @@
 
 <head>
 <link rel="stylesheet" href="/media/sekijul.css" type="text/css" />
+<script type="text/javascript" src="/media/ajax.js"></script>
+<script type="text/javascript" src="/media/jquery.js"></script>
 
   <title>Sekijul! | {% block title %}{% endblock %}</title>
   {% block headers %}{% endblock %}  
@@ -30,10 +32,11 @@
 		  welcome {{ user.username }}
 		  (<a href="/logout">logout</a>)
 	      {% else %}
-		  <a href="/login/">login</a> |
-		  <a href="/register/">register</a>
+		  <span onclick="javascript:show_dropdown('login/')">login</span> |
+		  <span onclick="javascript:show_dropdown('register/')">register</span>
 	      {% endif %}
 	</div>
+	<div class="dropdown" id="dropdown-id">Loading...</div>
       </div>
     </div></div>
   </div>
