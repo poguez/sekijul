@@ -1,12 +1,12 @@
 * {padding:0; margin:0;}
-body {/* background:url(images/bodybg.jpg) fixed repeat; */ font: 12px Verdana, Geneva, sans-serif; color:#999;}
+body {background:url(images/bg.png) fixed no-repeat; background-color:rgb(192, 222, 237); background-position-x: left; background-position-y: 40px; font: 12px Verdana, Geneva, sans-serif; color:#999;}
 #wrap {width:965px; margin:auto;}
 #nav-bg {
 	/* background:url(images/topbar.png) no-repeat; */
 	background-color: black;
 	display: block;
 	width:100%;
-	position:relative;
+	position:fixed;
 	top:0px;
 	left:0;
 	height:40px;
@@ -173,19 +173,18 @@ h2 a:hover {color:#fff;}
 .txtbutton a:hover {background:url(images/learnmore-hover.jpg) no-repeat!important; color:#fff!important;}
 #main {
 	border: solid 1px black;
-	
+	background-color: #f5f5f5;
 	position:relative;
 	border-radius: 5px;
 	min-width:920px;
 	max-width:1040px;
 	padding: 0px;
 	height: 100%;
-	margin: 20px auto 0 auto;
+	margin: 60px auto 0 auto;
 }
 
 .main-content {
-	border: solid 1px black;
-	
+	background-color: #f5f5f5; 
 	width: 540px;
 	height: 100%;
 	min-height: 750px;
@@ -193,17 +192,18 @@ h2 a:hover {color:#fff;}
 	display:inline-block;
 	position: relative;
 	border-radius: 5px;
+	padding: 20px;
 }
 
 .sub-content {
-	border: solid 1px black;
-	
+	background-color: rgba(221, 238, 246, 0.9);
 	position: relative;
 	min-width: 380px;
 	max-width: 500px;
 	min-height: 750px;
 	border-radius: 5px;
 	overflow: hidden;
+	padding: 20px;
 }
 
 #bottombar {

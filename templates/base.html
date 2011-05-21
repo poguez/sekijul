@@ -19,8 +19,8 @@
   <div id="nav-bg">
     <div id="nav-bar"><div id="nav-bar-inside">
       <div id="nav-bar-inside-left">
-        <div id="sekijul"><h2>{% block head %}{% endblock %}</h2></div>
-        <form id="search-form">
+        <div id="sekijul"><a href="/"><h2>sekijul</h2></a></div>
+        <form id="search-form" method="get" action="/events/search/">
           <span class="pointer-cube"><i></i></span>
           <input value placeholder="Search events by name, place, time, or anything!" name="q" id="search-query" type="text">
         </form>
@@ -30,10 +30,10 @@
           <a href="/">home</a> |
 	      {% if user.is_authenticated %}
 		  welcome {{ user.username }}
-		  (<a href="/logout">logout</a>)
+		  (<a href="/logout/">logout</a>)
 	      {% else %}
-		  <span onclick="javascript:show_dropdown('login/')">login</span> |
-		  <span onclick="javascript:show_dropdown('register/')">register</span>
+		  <span onclick="javascript:show_dropdown('/login/')">login</span> |
+		  <span onclick="javascript:show_dropdown('/register/')">register</span>
 	      {% endif %}
 	</div>
 	<div class="dropdown" id="dropdown-id">Loading...</div>

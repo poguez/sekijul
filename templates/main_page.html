@@ -6,7 +6,6 @@
   
     {% block content %}
   <div id="main">
-
   <!--
     {% if user.username %}
       <p>Welcome {{ user.username }} to Sekijul!!!</p>
@@ -22,7 +21,7 @@
    {% endif %}
   -->
       <div class="main-content">    
-	<h2> This is the list of the Up-coming events:</h2>
+	<h3>What's happening:</h3>
 	    {% if latest_event_list %}
 	      <ul>
 	    {% for event in latest_event_list %}
@@ -33,7 +32,7 @@
 	      <p>No events are available.</p>
 	    {% endif %}    
       </div>
-      <div class="sub-content" id="event_detail" style="visibility:hidden"></div>
+      <div class="sub-content" id="event_detail" style="visibility:visible"></div>
       
   </div>
   {% endblock %}

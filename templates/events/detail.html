@@ -1,22 +1,7 @@
- {% block title %} Event: {{event.name}} {% endblock %}
 
   {% block subcontent %}
 
-    {% if user.username %}
-
-      <p>Logged in as: {{ user.username }}</p>
-
-    {% else %}
-
-      <p>Welcome anonymous user!
-
-      You need to <a href="/login/">login</a>
-
-      before commenting and rating our events.</p>
-
-    {% endif %}
-
-    <h1>{{event.name }}</h1>
+    <h2>{{event.name }}</h2>
       <ul>
       <li>Place: {{ event.place }}</li>
       <li>Rating: {{ event.rating }}</li>
@@ -42,16 +27,33 @@
         {{event.content}}
       {%endif%}
 
+      <br><br>
+      
   {% load comments %}
 
   <h2>Comments:</h2>
-  {% get_comment_count for event as comment_count %}
+      {% if user.username %}
+
+      <p>Logged in as: {{ user.username }}</p>
+
+    {% else %}
+
+      <p>Welcome anonymous user!</p>
+
+      <p>You need to <a href="/login/">login</a>
+
+      before commenting and rating our events.</p>
+
+    {% endif %}
+    
+    <br>
+    
+    {% get_comment_count for event as comment_count %}
     {% if comment_count > 0  %}
       <h3>{{ comment_count }} comments have been posted.</h3>
     {% else %}
       <h3> Come on' make be the first to comment in this event. </h3>
     {% endif %}
-    <br>
  
     {% get_comment_list for event as comment_list %}
     
@@ -62,15 +64,16 @@
      
     
   {% if user.is_authenticated %}
+    <br>
+    <h3>Make a Comment</h3>
 
-    <h2>Make a Comment</h2>
-
-    {% get_comment_form for event as form %}
+   
     <!-- A context variable called form is created with the necessary hidden
     fields, timestamps and security hashes -->
     <table>
     <form action="{% comment_form_target %}" method="post">
   
+     {% get_comment_form for event as form %}
     {% csrf_token %}
     {{ form.object_pk}}
     {{ form.content_type}}
@@ -86,8 +89,6 @@
     </form>
     </table>
   {% endif %}
-
-
 
   {% endblock %}
 

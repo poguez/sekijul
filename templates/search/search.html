@@ -1,38 +1,43 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Search</h2>
+  <div id="main">
+  <!--
+    {% if user.username %}
+      <p>Welcome {{ user.username }} to Sekijul!!!</p>
 
-<form method="get" action=".">
-  <table>
-    {{ form.as_table }}
-    <tr>
-      <td>&nbsp;</td>
-      <td>
-        <input type="submit" value="Search">
-      </td>
-    </tr>
-  </table>
+    {% else %}
 
-  {% if query %}
-  <h3>Results</h3>
-  {% for result in page.object_list %}
-  <p>
-    <a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a>
-  </p>
-  {% empty %}
-  <p>No results found.</p>
-  {% endfor %}
+      <p>Welcome anonymous user!
 
-  {% if page.has_previous or page.has_next %}
-  <div>
-    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
-    |
-    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+      You need to <a href="/login/">login</a>
+
+      before commenting and rating our events.</p>
+      
+   {% endif %}
+  -->
+    <div class="main-content">    
+	  {% if query %}
+	    <h3>Results</h3>
+	    <ul>
+	    {% for result in page.object_list %}
+		<li><span onclick="javascript:show_event({{ result.object.id }})">{{ result.object.name }}</span></li>
+	    {% empty %}
+		<p>No results found.</p>
+	    {% endfor %}
+	
+	  {% if page.has_previous or page.has_next %}
+	  <div>
+	    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+	    |
+	    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+	  </div>
+	  {% endif %}
+	  {% else %}
+	  {# Show some example queries to run, maybe query syntax, something else? #}
+	  {% endif %}
+    </div>
+    <div class="sub-content" id="event_detail" style="visibility:visible"></div>  
   </div>
-  {% endif %}
-  {% else %}
-  {# Show some example queries to run, maybe query syntax, something else? #}
-  {% endif %}
-</form>
+
 {% endblock %}
