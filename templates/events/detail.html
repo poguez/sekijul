@@ -28,7 +28,71 @@
       {%endif%}
 
       <br><br>
-      
+<div id="asdf">sdfdf</div>      
+  <script type="text/javascript"> 
+var sy="{{date.year}}";var sm="{{date.month}}";var 
+sd="{{date.day}}";var sh="{{time.hour}}";var smi="{{time.minute}}"; 
+var ey="{{date.year}}";var em="{{date.month}}";var 
+ed="{{date.day}}";var eh="{{time.hour}}";var emi="{{time.minute}}"; 
+var what="{{event.name}}";  var location="{{event.place}}" 
+var details="{{event.content}}"; 
+var html = "";  // html for the user's button 
+function urlFormat(str) { 
+  var newstr = str.replace(/^\s+/g, ""); 
+  return encodeURIComponent(newstr.replace(/\s+$/g, "")); 
+} 
+
+function stringIncrement(str) { 
+  var myInt = parseInt(str) + 1; 
+  return stringPad(myInt); 
+} 
+
+// Add a leading '0' if string is only 1 char 
+function stringPad(str) { 
+  var newStr = "" + str; 
+  if (newStr.length == 1) { 
+    newStr = "0" + newStr; 
+  } 
+  return newStr; 
+} 
+
+function getUTCDateString(y,m,d,h,min) { 
+  var timeObj = new Date(y,m-1,d,h,min); 
+  var dateStr = "" + timeObj.getUTCFullYear(); 
+  dateStr += stringPad(timeObj.getUTCMonth()+1); 
+  dateStr += stringPad(timeObj.getUTCDate()); 
+  dateStr += "T" + stringPad(timeObj.getUTCHours()); 
+  dateStr += stringPad(timeObj.getUTCMinutes()) + "00Z"; 
+  return dateStr; 
+} 
+
+function getDateString() { 
+  var dateString = ""; 
+    dateString += getUTCDateString(sy,sm,sd,sh,smi); 
+    dateString += "/"; 
+    dateString += getUTCDateString(ey, em,ed,eh,emi); 
+  return dateString; 
+} 
+
+// Build the HTML code for the user and put it in the textarea 
+
+  var url = "http://www.google.com/calendar/event?action=TEMPLATE"; 
+  url += "&text=" + what; 
+  url += "&dates=" + getDateString(); 
+  url += "&details=" + details; 
+  url += "&location=" + location; 
+  url += "&trp=false"; 
+  var button = "<img src=\"http://www.google.com/calendar/images/ext/ 
+gc_button6_ko.gif\" border=0>" 
+  html = "<a href=\"" + url + "\" target=\"_blank\">" + button + "</ 
+a>"; 
+
+document.getElementById("asdf").innerHTML = "Click";
+
+</script>
+
+	
+
   {% load comments %}
 
   <h2>Comments:</h2>
@@ -70,8 +134,8 @@
    
     <!-- A context variable called form is created with the necessary hidden
     fields, timestamps and security hashes -->
-    <table>
-    <form action="{% comment_form_target %}" method="post">
+
+    <form action="/comments/post/" method="post">
   
      {% get_comment_form for event as form %}
     {% csrf_token %}
@@ -80,14 +144,10 @@
     {{ form.timestamp}}
     {{ form.security_hash}}
     {{ form.comment}}
-    <tr>
-      <td></td>
-      <td>
+
         <input type="submit" name="submit" class="submit-post" value="Post">
-     </td>
-    </tr>
     </form>
-    </table>
+
   {% endif %}
 
   {% endblock %}
