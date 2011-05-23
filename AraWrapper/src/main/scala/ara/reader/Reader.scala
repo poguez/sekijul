@@ -39,8 +39,12 @@ class Reader {
     val articlesSince = new ListBuffer[Article]
     for (article <- list) {
       if (getDate(article) > since) {
-	val a = (article \ "td").find(e => (e \ "@class").text == "title").get \ "a"
-	articlesSince += readArticle((a \ "@href").text)
+	try {
+	  val a = (article \ "td").find(e => (e \ "@class").text == "title").get \ "a"
+	  articlesSince += readArticle((a \ "@href").text)
+	} catch {
+	  case ex: NoSuchElementException =>
+	}
       }
     }
     if (getDate(list.last) > since) articlesSince ++ readFrom(since, page + 1)
