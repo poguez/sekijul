@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from events.models import Event
 
 def addNewEvent( date ):
-    url = 'http://localhost:8080/events'
+    url = 'http://192.249.29.6:8080/events'
     postValue = {'pubdate_since':date}
     print 'Querying ', url, 'with', postValue
 
