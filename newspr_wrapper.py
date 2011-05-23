@@ -14,6 +14,8 @@ import re
 from events.models import Event
 
 newspr_url = 'http://newspr.kaist.ac.kr/boards/lst/perform/page:1'
+domain_url = 'http://newspr.kaist.ac.kr/'
+
 
 def saveNewsprEvents():
   print 'Looking up', newspr_url
@@ -31,6 +33,7 @@ def saveNewsprEvents():
       name = elem.findAll(['dt'])[0].strong.a.string
       place = elem.findAll('dd')[2].contents[1]
       date = elem.findAll('dd')[1].contents[1]
+      img = elem.find('img')['src']
 
       print name, date, place
       dateMatch = re.match(r'(\d\d\d\d)-(\d\d)-(\d\d)', date)
@@ -42,10 +45,10 @@ def saveNewsprEvents():
                 date = dateProper,
                 content = u"",
                 place = place,
-                image = u"",
+                image = domain_url + img,
                 pub_date = datetime.datetime.today(),
                 rating = 0,
-                source = newspr_url)
+                source = newspr_url,)
       e.save()
       print 'Added to the Event table:', e
       i = i + 1
