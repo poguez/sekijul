@@ -9,10 +9,12 @@ from BeautifulSoup import BeautifulSoup
 from xml.dom.minidom import getDOMImplementation
 import re
 import datetime
+from django.contrib.auth.models import User
 
 from events.models import Event
 
 djac_url = 'http://djac.or.kr/html/kr/performance/performance_010101.html'
+domain_url = 'http://djac.or.kr/'
 
 def saveDjacEvents():
   print 'Looking up', djac_url
@@ -29,6 +31,7 @@ def saveDjacEvents():
       name = elem.find('dt').string
       place = elem.findAll('dd')[0].contents[1]
       date = elem.findAll('dd')[1].contents[1]
+      img = elem.find('img', {'style':'width:123px'})['src']
       print "title, location, date triple start"
       print name + "|" +  date + "|" + place
       print "title, location, date triple end"
@@ -44,10 +47,11 @@ def saveDjacEvents():
                 date = dateProper,
                 content = u"",
                 place = place,
-                image = u"",
+                poster = domain_url + img,
                 pub_date = datetime.datetime.today(),
                 rating = 0,
-                source = djac_url)
+                source = djac_url,
+                user= User.objects.get(username__exact='agent'))
       e.save()
       print 'Added to the Event table:', e
       i = i + 1

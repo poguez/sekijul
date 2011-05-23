@@ -25,6 +25,7 @@ class Event(models.Model):
   rating = models.DecimalField(max_digits=6, decimal_places=5,editable=False, default=Decimal(0))
   pub_date = models.DateTimeField('date published', editable=False, default=datetime.datetime.now())
   user = models.ForeignKey(User)  
+  poster = models.CharField(max_length=200, blank=True)
 
 
   def was_published_today(self):

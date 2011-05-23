@@ -10,6 +10,7 @@ from BeautifulSoup import BeautifulSoup
 from xml.dom.minidom import getDOMImplementation
 import datetime
 import re
+from django.contrib.auth.models import User
 
 from events.models import Event
 
@@ -45,10 +46,11 @@ def saveNewsprEvents():
                 date = dateProper,
                 content = u"",
                 place = place,
-                image = domain_url + img,
+                poster = domain_url + img,
                 pub_date = datetime.datetime.today(),
                 rating = 0,
-                source = newspr_url,)
+                source = newspr_url,
+                user= User.objects.get(username__exact='agent'))
       e.save()
       print 'Added to the Event table:', e
       i = i + 1
