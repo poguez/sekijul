@@ -14,7 +14,7 @@ from forms import *
 from django.contrib.sites.models import Site
 
 def index(request):
-  latest_event_list = Event.objects.all().order_by('-pub_date')[:20]
+  latest_event_list = Event.objects.all().order_by('-pub_date')[:7]
   listsize = latest_event_list.__len__()
   return render_to_response('events/index.html', {"latest_event_list":latest_event_list, "listsize":listsize}, context_instance=RequestContext(request))
 

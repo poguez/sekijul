@@ -11,7 +11,7 @@ from forms import *
 from events.models import Event
 
 def main(request):
-  latest_event_list = Event.objects.all().order_by('-pub_date')[:20]
+  latest_event_list = Event.objects.all().order_by('-pub_date')[:7]
   listsize = latest_event_list.__len__()
   print latest_event_list
   variables = RequestContext(request,{

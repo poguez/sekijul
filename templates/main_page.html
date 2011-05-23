@@ -25,7 +25,21 @@
 	    {% if latest_event_list %}
 	      <ul>
 	    {% for event in latest_event_list %}
-		<li><br><span onclick="javascript:show_event({{ event.id }})">{{ event.name|safe }}</span><div style="margin-left:20px"<p>Place: {{event.place|safe}}</p></div></li>
+		<li><br>
+		<div style="position:relative;">
+		{% if event.poster %}
+		<img src="{{event.poster}}" height="100px" width="80px" align="left"/>
+		{% else %}
+		<img src="/media/images/noimage.png" height="100px" width="80px" align="left"/>
+		{% endif %}
+		<div style="position:relative; left:20px; height:100px;"><span onclick="javascript:show_event({{ event.id }})">{{ event.name|safe }}</span><div style="position:relative; left:20px;"><br><p>Place: {{event.place|safe}}</p><br><p>Date: {{event.date.date|safe}}</p>
+		{% if event.source %}
+		<br><p>Source: <a href="{{event.source|safe}}">{{event.source|safe}}</a></p>
+		{% endif %}
+		</div></div>
+		</div>
+		<br>
+		</li>
 	    {% endfor %}
 	      </ul>
 	    {% else %}
@@ -35,7 +49,7 @@
 	    <div id="more_events">
 	    </div>
 	    <br>
-	    <input type="button" id="more_button" style="width:200px; height:30px; position:relative; margin: 0 auto 0 auto;" value="more events" onclick="more({{ listsize }})"/>
+	    <input type="button" id="more_button" style="width:200px; height:30px; position:relative; left:170px" value="more events" onclick="more({{ listsize }})"/>
 
       </div>
       <div class="sub-content" id="event_detail" style="visibility:visible">

@@ -1,3 +1,6 @@
+var startIndex = 0;
+var endIndex = 6;
+
 function show_event(event_id){
 	document.getElementById("event_detail").innerHTML = "Loading...";
 	document.getElementById("event_detail").style.visibility = "visible";
@@ -91,8 +94,8 @@ function postComment(){
 }
     
 function more(index){
-	var startIndex = index;
-	var endIndex = index + 5;
+	startIndex = endIndex + 1;
+	endIndex = startIndex + 5;
 	query = "/events/query/?b="+ startIndex +"&e=" + endIndex;
 
 	document.getElementById("more_button").value = "Loading...";
@@ -101,7 +104,7 @@ function more(index){
 		query,
 		"",
 		function(data) {
-			document.getElementById("more_events").innerHTML = data;
+			document.getElementById("more_events").innerHTML += data;
 			document.getElementById("more_button").value = "more events";
 		}
 		);

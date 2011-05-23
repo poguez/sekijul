@@ -17,15 +17,31 @@
    {% endif %}
   -->
     <div class="main-content">    
-	  {% if query %}
+	    {% if query %}
 	    <h3>Results</h3>
 	    <ul>
 	    {% for result in page.object_list %}
-		<li><span onclick="javascript:show_event({{ result.object.id }})">{{ result.object.name }}</span></li>
+		<li><br>
+		<div style="position:relative;">
+		{% if result.object.poster %}
+		<img src="{{result.object.poster}}" height="100px" width="80px" align="left"/>
+		{% else %}
+		<img src="/media/images/noimage.png" height="100px" width="80px" align="left"/>
+		{% endif %}
+		<div style="position:relative; left:20px; height:100px;"><span onclick="javascript:show_event({{ result.object.id }})">{{ result.object.name|safe }}</span><div style="position:relative; left:20px;"><br><p>Place: {{result.object.place|safe}}</p><br><p>Date: {{result.object.date.date|safe}}</p>
+		{% if result.object.source %}
+		<br><p>Source: <a href="{{result.object.source|safe}}">{{result.object.source|safe}}</a></p>
+		{% endif %}
+		</div></div>
+		</div>
+		<br>
+		</li>
 	    {% empty %}
-		<p>No results found.</p>
+	      <p>No events are available.</p>
 	    {% endfor %}
-	
+	      </ul>
+
+	    
 	  {% if page.has_previous or page.has_next %}
 	  <div>
 	    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
