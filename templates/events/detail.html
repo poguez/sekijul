@@ -17,7 +17,7 @@
       {%if images %}
         {%for image in images %}
 
-        <img src="http://localhost/media/{{image}}"/>
+        <img src="/media/{{image}}"/>
         
         {% endfor  %}
       {%endif%}
@@ -28,14 +28,21 @@
       {%endif%}
 
       <br><br>
-<div id="asdf">sdfdf</div>      
-  <script type="text/javascript"> 
+
+      <div id="test123"></div>
+      
+<script type="text/javascript"> 
+function forid(id) { 
+  return document.getElementById(id); 
+} 
+
 var sy="{{date.year}}";var sm="{{date.month}}";var 
 sd="{{date.day}}";var sh="{{time.hour}}";var smi="{{time.minute}}"; 
 var ey="{{date.year}}";var em="{{date.month}}";var 
 ed="{{date.day}}";var eh="{{time.hour}}";var emi="{{time.minute}}"; 
-var what="{{event.name}}";  var location="{{event.place}}" 
-var details="{{event.content}}"; 
+var name="{{event.name}}"; 
+var place="{{event.place}}"; 
+var detail="{{event.content}}"; 
 var html = "";  // html for the user's button 
 function urlFormat(str) { 
   var newstr = str.replace(/^\s+/g, ""); 
@@ -75,23 +82,26 @@ function getDateString() {
 } 
 
 // Build the HTML code for the user and put it in the textarea 
-
+function buildHTML(){
+	
   var url = "http://www.google.com/calendar/event?action=TEMPLATE"; 
-  url += "&text=" + what; 
+  url += "&text=" + name; 
   url += "&dates=" + getDateString(); 
-  url += "&details=" + details; 
-  url += "&location=" + location; 
+  url += "&details=" + detail; 
+  url += "&location=" + place; 
   url += "&trp=false"; 
-  var button = "<img src=\"http://www.google.com/calendar/images/ext/ 
-gc_button6_ko.gif\" border=0>" 
-  html = "<a href=\"" + url + "\" target=\"_blank\">" + button + "</ 
-a>"; 
+  var button = "<img src=\"http://www.google.com/calendar/images/ext/gc_button6_ko.gif\" border=0>" 
+  html = "<a href=\"" + url + "\" target=\"_blank\">" + button + "</a>";
+  
+  return html;
+}
 
-document.getElementById("asdf").innerHTML = "Click";
+document.write(buildHTML());
 
 </script>
 
-	
+<a href="http://www.google.com/calendar/event?action=TEMPLATE&text={{event.name}}&details={{event.content}}&location={{event.place}}&trp=false" target="_blank"><img src="http://www.google.com/calendar/images/ext/gc_button6_ko.gif" border=0></a>
+
 
   {% load comments %}
 
