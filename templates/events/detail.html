@@ -21,86 +21,16 @@
         
         {% endfor  %}
       {%endif%}
-      </ul>
-
+      
       {%if event.content != '' %}
-        {{event.content}}
+      <li>Description: {{event.content|safe}}</li>
       {%endif%}
+      
+      </ul>
 
       <br><br>
 
-      <div id="test123"></div>
-      
-<script type="text/javascript"> 
-function forid(id) { 
-  return document.getElementById(id); 
-} 
-
-var sy="{{date.year}}";var sm="{{date.month}}";var 
-sd="{{date.day}}";var sh="{{time.hour}}";var smi="{{time.minute}}"; 
-var ey="{{date.year}}";var em="{{date.month}}";var 
-ed="{{date.day}}";var eh="{{time.hour}}";var emi="{{time.minute}}"; 
-var name="{{event.name}}"; 
-var place="{{event.place}}"; 
-var detail="{{event.content}}"; 
-var html = "";  // html for the user's button 
-function urlFormat(str) { 
-  var newstr = str.replace(/^\s+/g, ""); 
-  return encodeURIComponent(newstr.replace(/\s+$/g, "")); 
-} 
-
-function stringIncrement(str) { 
-  var myInt = parseInt(str) + 1; 
-  return stringPad(myInt); 
-} 
-
-// Add a leading '0' if string is only 1 char 
-function stringPad(str) { 
-  var newStr = "" + str; 
-  if (newStr.length == 1) { 
-    newStr = "0" + newStr; 
-  } 
-  return newStr; 
-} 
-
-function getUTCDateString(y,m,d,h,min) { 
-  var timeObj = new Date(y,m-1,d,h,min); 
-  var dateStr = "" + timeObj.getUTCFullYear(); 
-  dateStr += stringPad(timeObj.getUTCMonth()+1); 
-  dateStr += stringPad(timeObj.getUTCDate()); 
-  dateStr += "T" + stringPad(timeObj.getUTCHours()); 
-  dateStr += stringPad(timeObj.getUTCMinutes()) + "00Z"; 
-  return dateStr; 
-} 
-
-function getDateString() { 
-  var dateString = ""; 
-    dateString += getUTCDateString(sy,sm,sd,sh,smi); 
-    dateString += "/"; 
-    dateString += getUTCDateString(ey, em,ed,eh,emi); 
-  return dateString; 
-} 
-
-// Build the HTML code for the user and put it in the textarea 
-function buildHTML(){
-	
-  var url = "http://www.google.com/calendar/event?action=TEMPLATE"; 
-  url += "&text=" + name; 
-  url += "&dates=" + getDateString(); 
-  url += "&details=" + detail; 
-  url += "&location=" + place; 
-  url += "&trp=false"; 
-  var button = "<img src=\"http://www.google.com/calendar/images/ext/gc_button6_ko.gif\" border=0>" 
-  html = "<a href=\"" + url + "\" target=\"_blank\">" + button + "</a>";
-  
-  return html;
-}
-
-document.write(buildHTML());
-
-</script>
-
-<a href="http://www.google.com/calendar/event?action=TEMPLATE&text={{event.name}}&details={{event.content}}&location={{event.place}}&trp=false" target="_blank"><img src="http://www.google.com/calendar/images/ext/gc_button6_ko.gif" border=0></a>
+<a href="http://www.google.com/calendar/event?action=TEMPLATE&text={{event.name}}&dates={{dateCalendar}}Z&details={{event.content}}&location={{event.place}}&trp=false" target="_blank"><img src="http://www.google.com/calendar/images/ext/gc_button6_ko.gif" border=0></a>
 
 
   {% load comments %}
@@ -119,9 +49,7 @@ document.write(buildHTML());
       before commenting and rating our events.</p>
 
     {% endif %}
-    
-    <br>
-    
+
     {% get_comment_count for event as comment_count %}
     {% if comment_count > 0  %}
       <h3>{{ comment_count }} comments have been posted.</h3>
@@ -135,7 +63,10 @@ document.write(buildHTML());
       <p>Posted by: {{ comment.user_name }} on {{ comment.submit_date }}<br />
       {{ comment.comment }}</p>
     {% endfor %}
-     
+    <div id="new_comments"></div>
+    
+    <br>
+         
     
   {% if user.is_authenticated %}
     <br>
@@ -145,7 +76,7 @@ document.write(buildHTML());
     <!-- A context variable called form is created with the necessary hidden
     fields, timestamps and security hashes -->
 
-    <form action="/comments/post/" method="post">
+    <form action="/comments/post/" id="postForm">
   
      {% get_comment_form for event as form %}
     {% csrf_token %}
@@ -155,7 +86,7 @@ document.write(buildHTML());
     {{ form.security_hash}}
     {{ form.comment}}
 
-        <input type="submit" name="submit" class="submit-post" value="Post">
+        <input type="button" value="post" onclick="postComment()" />
     </form>
 
   {% endif %}

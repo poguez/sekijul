@@ -5,7 +5,7 @@
 
 from django.shortcuts import render_to_response
 from django.template import Context, loader, RequestContext
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import logout
 from forms import * 
 from events.models import Event
@@ -19,6 +19,9 @@ def main(request):
   })
   
   return render_to_response('main_page.html',variables)
+
+def login(request):
+  return HttpResponse("success")
 
 def logout_view(request):
   logout(request)

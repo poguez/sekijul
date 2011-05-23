@@ -39,5 +39,9 @@ urlpatterns = patterns('',
 
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
         { 'document_root': media }),
+
+    # Account
+    url(r'^accounts/profile/$', 'views.login'),
+
 )
 

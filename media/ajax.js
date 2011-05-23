@@ -11,6 +11,65 @@ function show_event(event_id){
 		);
 }
 
+function login(){
+	var $form = $("#loginForm"),
+    	csrfmiddlewaretoken_ = $form.find( 'input[name="csrfmiddlewaretoken"]' ).val(),
+        username_ = $form.find( 'input[name="username"]' ).val(),
+        password_ = $form.find( 'input[name="password"]' ).val(),
+        url = $form.attr( 'action' );
+        
+	$.post(
+		url,
+		{ csrfmiddlewaretoken: csrfmiddlewaretoken_, username: username_, password: password_ },
+		function(data) {
+			if(data == "success"){
+				window.location.href = "/";
+			}
+			else{
+				document.getElementById("dropdown-id").innerHTML = data + "<p>invalid username or password</p>";
+			}
+		}
+		);
+}
+
+function register(){
+	var $form = $("#registerForm"),
+    	csrfmiddlewaretoken_ = $form.find( 'input[name="csrfmiddlewaretoken"]' ).val(),
+        username_ = $form.find( 'input[name="username"]' ).val(),
+        email_ = $form.find( 'input[name="email"]' ).val(),
+        password1_ = $form.find( 'input[name="password1"]' ).val(),
+        password2_ = $form.find( 'input[name="password2"]' ).val(),
+        url = $form.attr( 'action' );
+        
+	$.post(
+		url,
+		{ csrfmiddlewaretoken: csrfmiddlewaretoken_, username: username_, email: email_, password1: password1_, password2: password2_ },
+		function(data) {
+			document.getElementById("dropdown-id").innerHTML = data;
+		}
+		);
+}
+
+function postComment(){
+
+	var $form = $("#postForm"),
+    	csrfmiddlewaretoken_ = $form.find( 'input[name="csrfmiddlewaretoken"]' ).val(),
+        object_pk_ = $form.find( 'input[name="object_pk"]' ).val(),
+        content_type_ = $form.find( 'input[name="content_type"]' ).val(),
+        timestamp_ = $form.find( 'input[name="timestamp"]' ).val(),
+        security_hash_ = $form.find( 'input[name="security_hash"]' ).val(),
+        comment_ = $form.find( 'textarea[name="comment"]' ).val(),
+        url = $form.attr( 'action' );
+
+	$.post(
+		url,
+		{ csrfmiddlewaretoken: csrfmiddlewaretoken_, object_pk: object_pk_, content_type: content_type_, timestamp: timestamp_, security_hash: security_hash_, comment: comment_ },
+		function(data) {
+			show_event(object_pk_);
+		}
+		);
+}
+    
 function show_dropdown(addr){
 	query = addr;
 	if(document.getElementById("dropdown-id").style.visibility == "visible" && document.getElementById("dropdown-id").innerHTML != "Loading..."){
