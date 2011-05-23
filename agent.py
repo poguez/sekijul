@@ -58,6 +58,8 @@ def addNewEvent( date ):
         placeElem = elem.find('place')
         if (placeElem) is not None:
             place = placeElem.string
+        if place is None:
+            place = ""
 
 #content =
 	#print "asdfasdfasdfasdfadfad\n"
