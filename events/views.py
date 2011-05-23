@@ -35,11 +35,13 @@ def query(request):
 def detail(request, event_id):
   e = get_object_or_404(Event, pk=event_id)
   if(e):
+    dateutc = e.date.utcnow()
+    dateCalendar = dateutc.strftime('%Y%m%dT%H%M00Z/%Y%m%dT%H%M00')
     date = e.date.date()
     time = e.date.time()
     images = e.eventimage_set.all()
     site = Site.objects.get(name="sekijul")
-  return render_to_response('events/detail.html',{'event':e, 'date':date, 'time':time, 'images':images, 'site':site}, context_instance=RequestContext(request))
+  return render_to_response('events/detail.html',{'event':e, 'date':date, 'time':time, 'images':images, 'site':site, 'dateCalendar': dateCalendar}, context_instance=RequestContext(request))
   
 def dynamic_detail(request, event_id):
   e = get_object_or_404(Event, pk=event_id)

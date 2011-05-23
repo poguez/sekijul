@@ -16,4 +16,4 @@ log
 parts
 project/media/uploads
 tmp
-
+settings.py
