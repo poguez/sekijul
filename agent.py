@@ -62,13 +62,13 @@ def addNewEvent( date ):
 #content =
 	#print "asdfasdfasdfasdfadfad\n"
 	#print  elem.content.div.renderContents()#find('content')#.string.replace(' clear=\"none\" ','')
-	contentString = ''
-	if(elem.content.div.string == None):
+	#contentString = ''
+	#if(elem.content.div.string == None):
 	  #Celeefind('div').string	 #unicode(elem.content.renderContents()),
-	  contentString = ''
-	else: 
-		contentString = elem.content.div.renderContents()  #unicode(elem.content.renderContents()),
-		print contentString
+	#  contentString = ''
+	#else: 
+       	contentString = elem.content.div.renderContents()  #unicode(elem.content.renderContents()),
+        print contentString
 	print contentString
 	e = Event(name = elem.title.string,
                   date = dateAndTime,
