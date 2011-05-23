@@ -25,14 +25,42 @@
 	    {% if latest_event_list %}
 	      <ul>
 	    {% for event in latest_event_list %}
-		<li><span onclick="javascript:show_event({{ event.id }})">{{ event.name }}</span></li>
+		<li><br><span onclick="javascript:show_event({{ event.id }})">{{ event.name|safe }}</span><div style="margin-left:20px"<p>Place: {{event.place|safe}}</p></div></li>
 	    {% endfor %}
 	      </ul>
 	    {% else %}
 	      <p>No events are available.</p>
-	    {% endif %}    
+	    {% endif %}
+	    
+	    <div id="more_events">
+	    </div>
+	    <br>
+	    <input type="button" id="more_button" style="width:200px; height:30px; position:relative; margin: 0 auto 0 auto;" value="more events" onclick="more({{ listsize }})"/>
+
       </div>
-      <div class="sub-content" id="event_detail" style="visibility:visible"></div>
+      <div class="sub-content" id="event_detail" style="visibility:visible">
+      	<h3>Announcement</h3>
+      	<p>Welcome to sekijul, the event integrator from KAIST.</p>
+      	<br>
+      	<p>To add an event, you must be authorized by the administrator.</p>
+      	<p>Please contact sekijul admin, <span style="color:skyblue"><b>jojaeyoung.se@gmail.com</b></span></p>
+      	<br><br>
+      	<h3>sekijul?</h3>
+      	<p>The word 'sekijul', which is a Korean word for 'braid', is chosen as a pun on the English word 'schedule' to reflect the goal of this application.</p>
+      	<br>
+      	<p>The primary purpose of sekijul, is to provide a platform in which we can integrate information about the events in KAIST. The idea of the project came up to us because sometimes it's very difficult to know about the available events on campus. Especially when it comes to clubs the way to get the information is very difficult, because some clubs don't even have any way to publish their events because they don't have their website registered and some others publish their events in Billboard Systems where the information is very spread out. The main idea is to integrate several information sources from different types--which are mostly in random structure--and put the information in a way that the user can easily query and visualize. Moreover, we are also intending to offer a way to advertise events to all those clubs that don't have any website. Lastly, sekijul will also provide export functionality that lets users to add the events that they are interested in to their own calendar. This is a service that has not been offered by KAIST and could be very useful to the students who want to have fun in campus.</p>
+      	<br><br>
+      	<h3>About Jalapeno..</h3>
+      	<p>We are a devoted CS 457 term project team.</p>
+      	<br>
+      	<p>Members:</p>
+      	<div style="margin-left: 20px">
+      	<p>Jang Ho Choi</p>
+      	<p>Noe Dominguez</p>
+      	<p>Jae-Young Jo</p>
+      	<p>Jae-Hyun Lim</p>
+      	</div>
+      </div>
       
   </div>
   {% endblock %}

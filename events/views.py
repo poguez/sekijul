@@ -15,7 +15,8 @@ from django.contrib.sites.models import Site
 
 def index(request):
   latest_event_list = Event.objects.all().order_by('-pub_date')[:20]
-  return render_to_response('events/index.html', {"latest_event_list":latest_event_list}, context_instance=RequestContext(request))
+  listsize = latest_event_list.__len__()
+  return render_to_response('events/index.html', {"latest_event_list":latest_event_list, "listsize":listsize}, context_instance=RequestContext(request))
 
 def query(request):
 
@@ -31,17 +32,14 @@ def query(request):
   return render_to_response('events/index.html', {"latest_event_list":latest_event_list}, context_instance=RequestContext(request))
 
 
-@csrf_protect
 def detail(request, event_id):
   e = get_object_or_404(Event, pk=event_id)
   if(e):
-    dateutc = e.date.utcnow()
-    dateCalendar = dateutc.strftime('%Y%m%dT%H%M00Z/%Y%m%dT%H%M00')
     date = e.date.date()
     time = e.date.time()
     images = e.eventimage_set.all()
     site = Site.objects.get(name="sekijul")
-  return render_to_response('events/detail.html',{'event':e, 'date':date, 'time':time, 'images':images, 'site':site, 'dateCalendar': dateCalendar}, context_instance=RequestContext(request))
+  return render_to_response('events/detail.html',{'event':e, 'date':date, 'time':time, 'images':images, 'site':site}, context_instance=RequestContext(request))
   
 def dynamic_detail(request, event_id):
   e = get_object_or_404(Event, pk=event_id)

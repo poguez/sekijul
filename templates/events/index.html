@@ -1,9 +1,11 @@
-{% if latest_event_list %}
-    <ul>
-    {% for event in latest_event_list %}
-        <li><a href="/events/{{ event.id }}/">{{ event.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No events are available.</p>
-{% endif %}
+
+	    {% if latest_event_list %}
+	      <ul>
+	    {% for event in latest_event_list %}
+		<li><br><span onclick="javascript:show_event({{ event.id }})">{{ event.name|safe }}</span><br></li>
+	    {% endfor %}
+	      </ul>
+	    {% else %}
+	      <p>No events are available.</p>
+	    {% endif %}
+

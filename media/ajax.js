@@ -69,23 +69,42 @@ function postComment(){
 		}
 		);
 }
+
+function postComment(){
+
+	var $form = $("#postForm"),
+    	csrfmiddlewaretoken_ = $form.find( 'input[name="csrfmiddlewaretoken"]' ).val(),
+        object_pk_ = $form.find( 'input[name="object_pk"]' ).val(),
+        content_type_ = $form.find( 'input[name="content_type"]' ).val(),
+        timestamp_ = $form.find( 'input[name="timestamp"]' ).val(),
+        security_hash_ = $form.find( 'input[name="security_hash"]' ).val(),
+        comment_ = $form.find( 'textarea[name="comment"]' ).val(),
+        url = $form.attr( 'action' );
+
+	$.post(
+		url,
+		{ csrfmiddlewaretoken: csrfmiddlewaretoken_, object_pk: object_pk_, content_type: content_type_, timestamp: timestamp_, security_hash: security_hash_, comment: comment_ },
+		function(data) {
+			show_event(object_pk_);
+		}
+		);
+}
     
-function show_dropdown(addr){
-	query = addr;
-	if(document.getElementById("dropdown-id").style.visibility == "visible" && document.getElementById("dropdown-id").innerHTML != "Loading..."){
-		document.getElementById("dropdown-id").style.visibility = "hidden";
-		document.getElementById("dropdown-id").innerHTML = "Loading...";
-	}
-	else{
-		document.getElementById("dropdown-id").style.visibility = "visible";
-		$.get(
-			query,
-			"",
-			function(data) {
-				document.getElementById("dropdown-id").innerHTML = data;
-			}
-			);
-	}
+function more(index){
+	var startIndex = index;
+	var endIndex = index + 5;
+	query = "/events/query/?b="+ startIndex +"&e=" + endIndex;
+
+	document.getElementById("more_button").value = "Loading...";
+
+	$.get(
+		query,
+		"",
+		function(data) {
+			document.getElementById("more_events").innerHTML = data;
+			document.getElementById("more_button").value = "more events";
+		}
+		);
 }
 
 function proj_detail(proj_id){

@@ -1,7 +1,19 @@
 
   {% block subcontent %}
 
-    <h2>{{event.name }}</h2>
+    <h2>{{event.name|safe}}</h2>
+      {%if images %}
+        {%for image in images %}
+
+        <img src="/media/{{image}}"/>
+  
+        {% endfor  %}
+      {%endif%}
+      {%if event.poster %}
+
+        <img src="{{event.poster}}"/>
+
+      {%endif%}
       <ul>
       <li>Place: {{ event.place }}</li>
       <li>Rating: {{ event.rating }}</li>
@@ -14,13 +26,6 @@
       <li> <a href='{{ event.source }}'>Link to site</a></li>
       {%endif%}
       <li>Published on: {{ event.date }}</li>
-      {%if images %}
-        {%for image in images %}
-
-        <img src="/media/{{image}}"/>
-        
-        {% endfor  %}
-      {%endif%}
       
       {%if event.content != '' %}
       <li>Description: {{event.content|safe}}</li>
