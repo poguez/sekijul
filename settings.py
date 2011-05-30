@@ -3,7 +3,7 @@
 #FOLDER_NAME is the name of the folder which contains the project
 #
 
-DIR_PREFIX = '/home/elev/scraps/sekijul_stuff/sekijul'
+DIR_PREFIX = 'd:/sekijul'
 FOLDER_NAME = 'sekijul'
 
 project_folder = FOLDER_NAME + '.urls'
@@ -30,7 +30,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-	'NAME' : 'noe'
+	'NAME' : 'd:/sekijul/noe'
 #    	'OPTIONS': {
 #                'read_default_file':'/home/nou/django-base/tutorial/sekijul/my.cnf',
 #        }

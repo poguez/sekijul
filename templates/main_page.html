@@ -32,7 +32,7 @@
 		{% else %}
 		<img src="/media/images/noimage.png" height="100px" width="80px" align="left"/>
 		{% endif %}
-		<div style="position:relative; left:20px; height:100px;"><span onclick="javascript:show_event({{ event.id }})">{{ event.name|safe }}</span><div style="position:relative; left:20px;"><br><p>Place: {{event.place|safe}}</p><br><p>Date: {{event.date.date|safe}}</p>
+		<div style="position:relative; left:20px; height:100px;"><span onclick="javascript:show_event({{ event.id }})">{{ event.name|safe }}</span><div style="position:relative; left:5px;"><br><p>Place: {{event.place|safe}}</p><br><p>Date: {{event.date.date|safe}}</p>
 		{% if event.source %}
 		<br><p>Source: <a href="{{event.source|safe}}">{{event.source|safe}}</a></p>
 		{% endif %}

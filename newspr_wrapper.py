@@ -1,5 +1,3 @@
-# -*-coding: utf-8 -*-
-# ^ಠ_ಠ, Python
 """How to run
 $ PYTHONPATH=BeautifulSoup-3.2.0 python2 manage.py shell
 and invoke the function saveNewsprEvents(). Phew.
@@ -56,4 +54,4 @@ def saveNewsprEvents():
       i = i + 1
 
   print
-  print i, u"events saved from newspr. Tack så myscket."
+  print i, u"events saved from newspr."

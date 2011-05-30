@@ -1,5 +1,5 @@
 var startIndex = 0;
-var endIndex = 6;
+var endIndex = 7;
 
 function show_event(event_id){
 	document.getElementById("event_detail").innerHTML = "Loading...";
@@ -93,6 +93,23 @@ function postComment(){
 		);
 }
     
+function show_dropdown(addr){
+
+	query = addr;
+	if(document.getElementById("dropdown-id").style.visibility == "visible" && document.getElementById("dropdown-id").innerHTML != "Loading..."){	
+		document.getElementById("dropdown-id").style.visibility = "hidden";
+		document.getElementById("dropdown-id").innerHTML = "Loading...";	
+	}else{
+		document.getElementById("dropdown-id").style.visibility = "visible";
+		$.get(
+			query,
+			"",
+			function(data) {
+				document.getElementById("dropdown-id").innerHTML = data;
+			});
+	}
+}
+
 function more(index){
 	startIndex = endIndex + 1;
 	endIndex = startIndex + 5;
@@ -106,6 +123,7 @@ function more(index){
 		function(data) {
 			document.getElementById("more_events").innerHTML += data;
 			document.getElementById("more_button").value = "more events";
+			document.getElementById("more_button").style.height = "100%";
 		}
 		);
 }
